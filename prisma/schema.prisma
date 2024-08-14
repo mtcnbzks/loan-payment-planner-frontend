@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model loan_group {
+  id        Int         @id(map: "pk_loan_group")
+  name      String      @unique(map: "uq_name_loan_group")
+  loan_type loan_type[]
+}
+
+model loan_type {
+  id                    Int        @id(map: "pk_loan_type")
+  loan_group_id         Int
+  name                  String     @unique(map: "uq_name_loan_type")
+  min_installment_count Float
+  max_installment_count Float
+  interest_rate         Float
+  cost                  Float?     @default(0)
+  kkdf_rate             Int?       @default(0)
+  bsmv_rate             Float?     @default(0)
+  loan_group            loan_group @relation(fields: [loan_group_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "loan_type_loan_group_id_fk")
+}
