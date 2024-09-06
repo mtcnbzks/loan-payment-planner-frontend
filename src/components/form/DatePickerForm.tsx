@@ -18,7 +18,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
+} from "../ui/form";
 import { Control } from "react-hook-form";
 import { tr } from "date-fns/locale";
 
@@ -62,7 +62,9 @@ export function DatePickerForm({ name, label, control }: DatePickerFormProps) {
                 selected={field.value}
                 onSelect={field.onChange}
                 initialFocus
-                fromYear={2000}
+                fromDate={
+                  new Date(new Date().setDate(new Date().getDate() + 1))
+                }
                 toYear={2030}
               />
             </PopoverContent>

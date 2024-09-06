@@ -1,13 +1,16 @@
+import "../styles/globals.css";
+
+import ThemeToggle from "@/components/ThemeToggle";
+import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import ThemeToggle from "@/components/ThemeToggle";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Şekerbank Ödeme Planlama Sistemi",
+  title: "Şekerbank Kredi Planlama Sistemi",
+  description: "Şekerbank Kredi Planlama Sistemi",
 };
 
 export default function RootLayout({
@@ -18,9 +21,17 @@ export default function RootLayout({
   return (
     <html lang="tr" suppressHydrationWarning>
       <body className={`${inter.className}`}>
-        <ThemeProvider attribute="class" defaultTheme="system">
-          <ThemeToggle />
-          {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="flex">
+            <ThemeToggle />
+          </div>
+          <main>{children}</main>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

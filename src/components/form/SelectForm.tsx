@@ -19,6 +19,7 @@ interface SelectFormProps {
   name: string;
   label: string;
   values: string[];
+  initialSelect?: boolean;
   control: Control<any>;
 }
 
@@ -26,6 +27,7 @@ export default function SelectForm({
   name,
   label,
   values,
+  initialSelect,
   control,
 }: SelectFormProps) {
   return (
@@ -35,7 +37,10 @@ export default function SelectForm({
       render={({ field }) => (
         <FormItem className="w-64">
           <FormLabel>{label}</FormLabel>
-          <Select onValueChange={field.onChange} defaultValue={field.value}>
+          <Select
+            onValueChange={field.onChange}
+            defaultValue={initialSelect ? values[0].toString() : field.value}
+          >
             <FormControl>
               <SelectTrigger>
                 <SelectValue />

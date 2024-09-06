@@ -1,6 +1,5 @@
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -36,6 +35,8 @@ export default function InputForm({
               disabled={disabled}
               className="text-right"
               type={type}
+              lang="tr"
+              step={type === "number" ? "0.01" : undefined}
               {...field}
             />
           </FormControl>
