@@ -54,10 +54,10 @@ export default function PaymentPlanForm({
 
   useEffect(() => {
     async function setLoanIdFromSearch() {
-      const loanId = await fetchLoanIdFromName(loanName);
-      if (!loanId) return;
+      const loan = await fetchLoanIdFromName(loanName);
+      if (!loan) return;
 
-      setLoanId(Number(loanId.id));
+      setLoanId(Number(loan.id));
 
       // scroll to bottom
       setTimeout(() => {
@@ -76,15 +76,16 @@ export default function PaymentPlanForm({
   }, [loanName]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchData() {
       try {
-        const groups = await fetchGroups();
-        setLoanGroups(groups);
-        // Handle groups data
+        if (!loanGroups) {
+          const groups = await fetchGroups();
+          setLoanGroups(groups);
+        }
       } catch (error) {
         console.error("Failed to fetch groups:", error);
       }
-    };
+    }
 
     fetchData();
   }, [loanGroups]);
@@ -94,11 +95,11 @@ export default function PaymentPlanForm({
       const loanGroupName = getValues("loan_group");
       if (!loanGroupName) return;
 
-      const id = await getGroupIdFromName(loanGroupName);
-      if (!id) return;
+      const loanGroup = await getGroupIdFromName(loanGroupName);
+      if (!loanGroup) return;
 
-      const types = await fetchTypeFromGroup(id.id);
-      setLoanTypes(types);
+      const loanTypes = await fetchTypeFromGroup(loanGroup.id);
+      setLoanTypes(loanTypes);
     }
 
     loadLoanTypes();
@@ -316,8 +317,8 @@ export default function PaymentPlanForm({
             </div>
             <div className="flex items-center gap-4">
               <Button type="submit">Planı Yazdır</Button>
-              <LoanSearchDialog />
-              <LoanSaveNameDialog loanId={loanId} />
+              {/* <LoanSearchDialog />
+              <LoanSaveNameDialog loanId={loanId} /> */}
             </div>
           </>
         ) : (

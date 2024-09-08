@@ -50,7 +50,7 @@ export default function Home() {
       <Suspense>
         <PaymentPlanForm
           loanId={loanId}
-          setLoanId={(id: number) => setLoanId(id)}
+          setLoanId={(loanId: number) => setLoanId(loanId)}
         />
       </Suspense>
 
@@ -64,7 +64,7 @@ export default function Home() {
               triggerButton={<Button variant="destructive">Kaydı Sil</Button>}
               action={deleteLoanAndInstallment}
             />
-            <LoanDownloadButton loanId={loanId} />
+            {/* <LoanDownloadButton loanId={loanId} /> */}
           </div>
         </div>
       )}

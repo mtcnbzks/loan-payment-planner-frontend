@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-export default function Loader() {
+function Loader() {
   useEffect(() => {
     async function getLoader() {
       const { leapfrog } = await import("ldrs");

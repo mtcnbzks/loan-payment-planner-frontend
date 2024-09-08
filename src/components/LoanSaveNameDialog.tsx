@@ -17,13 +17,13 @@ import { Input } from "./ui/input";
 
 export default function LoanSaveNameDialog({ loanId }: { loanId: number }) {
   const [open, setOpen] = useState(false);
+
   const [loanSearchName, setLoanSearchName] = useState("");
 
   const searchParams = useSearchParams();
-  const loanName = searchParams.get("loanName");
 
   async function onSubmit() {
-    if (loanName) {
+    if (searchParams.get("loanName")) {
       toast("Bu plan zaten kaydedilmiş.", {
         description: "Bu kredi planı farklı bir isimle zaten kaydedilmiş.",
         duration: 3000,
