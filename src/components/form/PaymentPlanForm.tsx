@@ -18,7 +18,7 @@ import {
 import { createStringArray } from "@/lib/helper";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loan_group, loan_type } from "@prisma/client";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import LoadingSpinner from "../LoadingSpinner";
@@ -49,7 +49,10 @@ export default function PaymentPlanForm({
   });
   const { watch, getValues, setValue } = form;
 
+  const { replace } = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
+
   const loanName = searchParams.get("loanName");
 
   useEffect(() => {
@@ -61,10 +64,8 @@ export default function PaymentPlanForm({
 
       // scroll to bottom
       setTimeout(() => {
-        window.scrollTo({
-          top: document.body.scrollHeight,
-          behavior: "smooth",
-        });
+        const table = document.getElementById("table");
+        table?.scrollIntoView({ behavior: "smooth" });
       }, 500);
     }
 
@@ -153,10 +154,15 @@ export default function PaymentPlanForm({
   }, [watch("loan_amount")]);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    const params = new URLSearchParams(searchParams);
+    if (params.get("loanName")) {
+      params.delete("loanName");
+      window.history.replaceState({}, "", `${pathname}?${params.toString()}`);
+    }
     console.log(values);
 
     const groupId = await getGroupIdFromName(values.loan_group);
-    console.log(new Date());
+    console.log(new Date()); // TODO: 3h problem
 
     const loanData = {
       createdAt: new Date(),
@@ -189,7 +195,8 @@ export default function PaymentPlanForm({
     await postInstallments(Number(loanIdFromUri));
 
     setTimeout(() => {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+      const table = document.getElementById("table");
+      table?.scrollIntoView({ behavior: "smooth" });
     }, 500);
   }
 
@@ -317,8 +324,8 @@ export default function PaymentPlanForm({
             </div>
             <div className="flex items-center gap-4">
               <Button type="submit">Planı Yazdır</Button>
-              {/* <LoanSearchDialog />
-              <LoanSaveNameDialog loanId={loanId} /> */}
+              <LoanSearchDialog />
+              <LoanSaveNameDialog loanId={loanId} />
             </div>
           </>
         ) : (

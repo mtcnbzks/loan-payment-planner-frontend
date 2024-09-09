@@ -34,7 +34,7 @@ export const defaultValues = {
   expense: 0,
   kkdf_rate: 0,
   bsmv_rate: 0,
-  loan_amount: 1000,
+  loan_amount: 10000,
   period_frequency: 1,
   period_frequency_type: "M- Ayda",
   first_installment_date: new Date(

@@ -103,9 +103,7 @@ export async function getLoanNames(query: string) {
 export async function fetchInstallmentsFromLoanId(loanId: number) {
   const url = `${process.env.BACKEND_INSTALLMENT_URL}/${loanId}`;
 
-  if (!url) {
-    throw new Error("Backend URL is not defined.");
-  }
+  if (!url) throw new Error("Backend URL is not defined.");
 
   try {
     const response = await fetch(url);
@@ -190,9 +188,7 @@ export async function getLoans() {
 export async function postLoan(loan: any) {
   const url = process.env.BACKEND_LOAN_URL;
 
-  if (!url) {
-    throw new Error("Backend URL is not defined.");
-  }
+  if (!url) throw new Error("Backend URL is not defined.");
 
   try {
     const response = await fetch(url, {

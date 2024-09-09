@@ -35,8 +35,6 @@ export default function Home() {
   const fetchData = useCallback(async () => {
     if (loanId > 0) {
       const fetchedData = await fetchInstallmentsFromLoanId(loanId);
-      console.log(fetchedData);
-
       setData(fetchedData);
     }
   }, [loanId]);
@@ -64,7 +62,7 @@ export default function Home() {
               triggerButton={<Button variant="destructive">Kaydı Sil</Button>}
               action={deleteLoanAndInstallment}
             />
-            {/* <LoanDownloadButton loanId={loanId} /> */}
+            <LoanDownloadButton loanId={loanId} />
           </div>
         </div>
       )}
