@@ -18,7 +18,7 @@ import {
 import { createStringArray } from "@/lib/helper";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loan_group, loan_type } from "@prisma/client";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import LoadingSpinner from "../LoadingSpinner";
@@ -49,7 +49,6 @@ export default function PaymentPlanForm({
   });
   const { watch, getValues, setValue } = form;
 
-  const { replace } = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -206,7 +205,7 @@ export default function PaymentPlanForm({
         {loanGroups ? (
           <>
             {/* Form Row 1 */}
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  gap-4 md:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
               {/* Column 1 */}
               <div className="space-y-2">
                 <SelectForm
@@ -330,7 +329,6 @@ export default function PaymentPlanForm({
           </>
         ) : (
           <LoadingSpinner />
-          // <Loader />
         )}
       </form>
     </Form>
