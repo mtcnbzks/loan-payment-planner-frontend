@@ -47,8 +47,6 @@ export default function LoanDownloadButton({ loanId }: { loanId: number }) {
       "Taksit Tutarı": any;
     }[] = [];
 
-    console.log(installments[0]);
-
     installments.forEach((installment: any, index: number) => {
       exportInstallments.push({
         "Sıra No": installment.lineNo,

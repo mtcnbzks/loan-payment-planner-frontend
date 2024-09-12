@@ -84,7 +84,6 @@ export async function getAllLoanNames() {
 // Fetch loan names that match a search query
 export async function getLoanNames(query: string) {
   if (!query) return [];
-  console.log({ query });
 
   return await prisma.loan.findMany({
     where: {
