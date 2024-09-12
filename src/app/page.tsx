@@ -43,7 +43,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col md:items-center justify-center gap-4 p-4 mt-12">
+    <div className="flex flex-col md:items-center justify-center gap-4 p-4 mt-8">
       <Header />
       <Suspense>
         <PaymentPlanForm
