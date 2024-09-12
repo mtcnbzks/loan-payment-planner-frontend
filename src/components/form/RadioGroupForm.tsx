@@ -35,6 +35,7 @@ export function RadioGroupForm({
               onValueChange={field.onChange}
               defaultValue={field.value}
               className="flex flex-col space-y-1"
+              aria-label={label}
             >
               {values.map((value) => (
                 <FormItem
@@ -42,7 +43,7 @@ export function RadioGroupForm({
                   className="flex items-center space-x-3 space-y-0"
                 >
                   <FormControl>
-                    <RadioGroupItem value={value} />
+                    <RadioGroupItem value={value} aria-label={value} />
                   </FormControl>
                   <FormLabel className="font-normal">{value}</FormLabel>
                 </FormItem>

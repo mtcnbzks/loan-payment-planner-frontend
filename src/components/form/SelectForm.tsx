@@ -42,7 +42,7 @@ export default function SelectForm({
             defaultValue={initialSelect ? values[0].toString() : field.value}
           >
             <FormControl>
-              <SelectTrigger>
+              <SelectTrigger aria-label={label}>
                 <SelectValue />
               </SelectTrigger>
             </FormControl>

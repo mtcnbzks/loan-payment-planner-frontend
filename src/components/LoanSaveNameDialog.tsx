@@ -60,7 +60,7 @@ export default function LoanSaveNameDialog({ loanId }: { loanId: number }) {
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="outline" size="icon">
+          <Button variant="outline" size="icon" aria-label="Kredi Planı Kaydet">
             <Save className="h-5 w-5" />
           </Button>
         </DialogTrigger>

@@ -50,7 +50,7 @@ export default function LoanSearchDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button variant="outline" size="icon" aria-label="Kredi Kaydı Ara">
           <Search className="h-5 w-5" />
         </Button>
       </DialogTrigger>
