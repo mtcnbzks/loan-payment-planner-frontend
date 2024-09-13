@@ -14,7 +14,7 @@ export const columns: ColumnDef<installment>[] = [
     cell: (row) => {
       const value = row.cell.getValue() as Date;
       const date = new Date(value);
-      return date.toLocaleDateString();
+      return date.toLocaleDateString("tr-TR");
     },
   },
   {
